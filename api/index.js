@@ -13,9 +13,9 @@ const getAsync = promisify(client.get).bind(client);
 
 app.get('/jobs', async (req, res) => {
     const jobs = await getAsync('github');
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000")
+  // we need to set a server header in api that allows req from the url(origin)
     console.log(JSON.parse(jobs).length);
-
-
     return res.send(jobs)
 })
 
